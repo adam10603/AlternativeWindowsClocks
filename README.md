@@ -15,7 +15,7 @@ This is a direct replacement for `std::chrono::steady_clock`. Note that the `per
 
 It can be useful in performance-critical code that needs high-precision interval measurements while maintaining compatibility `std::chrono`, as niche as that might be.
 
-Performance is around 1.1x to 1.5x faster compared Microsoft's `std::chrono::steady_clock` depending on use case, at least in my the rudimentary benchmarks.
+Performance is around 1.1x to 1.5x faster compared Microsoft's `std::chrono::steady_clock` depending on use case, at least in my rudimentary benchmarks.
 
 #### Properties
 
@@ -38,7 +38,7 @@ It is much more performant than `precision_monotonic_clock`, however, it has a m
 
 This clock can be useful in performance-critical code that needs interval measurements where a precision of around 16ms is sufficient.
 
-Performance is around 13x faster than `precision_monotonic_clock`, at least in my the rudimentary benchmarks.
+Performance is around 13x faster than `precision_monotonic_clock`, at least in my rudimentary benchmarks.
 
 #### Properties
 
