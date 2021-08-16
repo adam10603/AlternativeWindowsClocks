@@ -1,7 +1,7 @@
 # Alternative Windows Clocks
 ![Version](https://img.shields.io/badge/Version-1.0-green.svg) ![License](https://img.shields.io/badge/License-WTFPL%20v2-blue.svg)
 
-Alternative C++ clock classes for Windows that implement the requirements of [`TrivialClock`](https://en.cppreference.com/w/cpp/named_req/TrivialClock) (compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/chrono)).
+C++ clock classes for Windows that implement the requirements of [`TrivialClock`](https://en.cppreference.com/w/cpp/named_req/TrivialClock) (compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/chrono)).
 
 
 ## precision_monotonic_clock
