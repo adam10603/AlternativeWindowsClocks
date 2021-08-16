@@ -17,7 +17,7 @@ It can be useful in performance-critical code that requires high-precision inter
 
 Performance is around 1.15x to 1.5x faster compared Microsoft's `std::chrono::steady_clock`, at least in the rudimentary benchmarks I ran on my PC. Of course this depends highly on the use case and the system, but it should always be faster by some amount.
 
-### Properties
+#### Properties
 
 Name | Value
 -|-
@@ -40,7 +40,7 @@ This clock can be useful in performance-critical code that requires interval mea
 
 Performance is around 13x faster than `precision_monotonic_clock`, at least in the rudimentary benchmarks I ran on my PC.
 
-### Properties
+#### Properties
 
 Name | Value
 -|-
