@@ -19,7 +19,7 @@ Performance is around 1.15x to 1.5x faster compared Microsoft's `std::chrono::st
 
 ### Properties
 
-&#9;|&#9;
+Name | Value
 -|-
 Underlying API | [`QueryPerformanceCounter`](https://docs.microsoft.com/en-us/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter)
 `is_steady` | `true`
@@ -42,7 +42,7 @@ Performance is around 13x faster than `precision_monotonic_clock`, at least in t
 
 ### Properties
 
-&#9;|&#9;
+Name | Value
 -|-
 Underlying API | [`GetTickCount64`](https://docs.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-gettickcount64)
 `is_steady` | `true`
