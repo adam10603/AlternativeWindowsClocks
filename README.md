@@ -9,7 +9,7 @@ C++ clock classes for Windows that implement [`TrivialClock`](https://en.cpprefe
 
 This clock wraps [`QueryPerformanceCounter`](https://docs.microsoft.com/en-us/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter), and is very similar to Microsoft's current [implementation](https://github.com/microsoft/STL/blob/a9321cfe53ea31a7e197d5d8336167d6ca3de8b6/stl/inc/chrono#L683) of `std::chrono::steady_clock`, which also relies on the same API.
 
-The differences from Microsoft's are that `precision_monotonic_clock` inlines the retrieval of both the frquency and the counter (enabling better compiler optimization), and it also includes a very low-overhead special case for a frequency of 10<sup>7</sup> which is common on a lot of platforms.
+The differences from Microsoft's are that this version inlines the retrieval of both the frquency and the counter (enabling better compiler optimization), and it also includes a very low-overhead special case for a frequency of 10<sup>7</sup> which is common on a lot of platforms.
 
 This is a direct replacement for `std::chrono::steady_clock`. Note that the `period` is different between them, but this shouldn't require any change in properly written code.
 
