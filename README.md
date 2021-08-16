@@ -15,7 +15,7 @@ This is a direct replacement for `std::chrono::steady_clock`. Note that the `per
 
 It can be useful in performance-critical code that needs high-precision interval measurements while maintaining compatibility with `std::chrono`, as niche as that might be.
 
-Performance is around 1.1x to 1.5x faster compared Microsoft's `std::chrono::steady_clock` depending on use case, at least in my rudimentary benchmarks.
+Performance is around 1.1x to 1.5x faster than Microsoft's `std::chrono::steady_clock` depending on use case, at least in my rudimentary benchmarks.
 
 #### Properties
 
@@ -32,7 +32,7 @@ Resolution | <1μs (typically 100ns)
 
 This clock wraps [`GetTickCount64`](https://docs.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-gettickcount64), which isn't used in any of Microsoft's implementations of `std::chrono` clocks.
 
-Although this clock can also replace `std::chrono::steady_clock` in existing code, there are some differences that make it more of a separate option.
+Although this clock can also replace `std::chrono::steady_clock` in existing code, there are some differences that make this more of a separate option.
 
 It is much more performant than `precision_monotonic_clock`, however, it has a much lower precision and resolution.
 
