@@ -1,4 +1,5 @@
 #ifndef _ALT_CLOCKS_HPP_
+#define _ALT_CLOCKS_HPP_
 
 #include <chrono>
 #include <atomic>
