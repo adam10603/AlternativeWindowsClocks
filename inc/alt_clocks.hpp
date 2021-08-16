@@ -5,12 +5,13 @@
 #include <atomic>
 #include <Windows.h>
 
-// Alternative clocks for Windows that implement the requirements of TrivialClock (compatible with std::chrono).
+// Clock classes for Windows that implement TrivialClock requirements (compatible with std::chrono)
 namespace alt_clocks {
 
 	// Wraps QueryPerformanceCounter(). Resolution is under 1us (typically 100ns). Less performant than fast_monotonic_clock.
 	class precision_monotonic_clock {
 	public:
+
 		using rep						= std::chrono::nanoseconds::rep;
 		using period					= std::ratio<	std::chrono::nanoseconds::period::num,
 														std::chrono::nanoseconds::period::den / 100>;
@@ -21,29 +22,40 @@ namespace alt_clocks {
 		[[nodiscard]] static auto now() noexcept {
 			static_assert(period::num == 1); // Should always pass
 
-			static std::atomic<rep> qpc_freq_cache{ 0 };
+			const auto freq	= get_freq();
+			const auto ctr	= get_ctr();
 
-			auto freq = qpc_freq_cache.load(std::memory_order_relaxed);
+			if (freq == period::den) return time_point(duration(ctr));
+
+			const auto whole	= (ctr / freq) * static_cast<rep>(period::den);
+			const auto part		= (ctr % freq) * static_cast<rep>(period::den) / freq;
+
+			return time_point(duration(whole + part));
+		}
+
+	private:
+
+		static inline rep get_freq() noexcept {
+			static std::atomic<rep> freq_cache{ 0 };
+
+			auto freq = freq_cache.load(std::memory_order_relaxed);
 
 			if (freq == 0) {
 				auto retrieved_freq = LARGE_INTEGER{};
 				QueryPerformanceFrequency(&retrieved_freq);
 
 				freq = static_cast<rep>(retrieved_freq.QuadPart);
-				qpc_freq_cache.store(freq, std::memory_order_relaxed);
+				freq_cache.store(freq, std::memory_order_relaxed);
 			}
 
+			return freq;
+		}
+
+		static inline rep get_ctr() noexcept {
 			auto retrieved_ctr = LARGE_INTEGER{};
 			QueryPerformanceCounter(&retrieved_ctr);
 
-			const auto ticks = static_cast<rep>(retrieved_ctr.QuadPart);
-
-			if (freq == period::den) return time_point(duration(ticks));
-
-			const auto whole	= (ticks / freq) * static_cast<rep>(period::den);
-			const auto part		= (ticks % freq) * static_cast<rep>(period::den) / freq;
-
-			return time_point(duration(whole + part));
+			return static_cast<rep>(retrieved_ctr.QuadPart);
 		}
 	};
 
