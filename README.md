@@ -47,7 +47,7 @@ Name | Value
 Underlying API | [`GetTickCount64`](https://docs.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-gettickcount64)
 `is_steady` | `true`
 Precision | 1ms
-Resolution | 10-16ms
+Resolution | Typically 10-16ms
 
 
 ## Version history
