@@ -13,7 +13,7 @@ The differences from Microsoft's are that this version inlines the retrieval of 
 
 This is a direct replacement for `std::chrono::steady_clock`. Note that the `period` is different between them, but this shouldn't require any change in properly written code.
 
-It can be useful in performance-critical code that needs high-precision interval measurements while maintaining compatibility `std::chrono`, as niche as that might be.
+It can be useful in performance-critical code that needs high-precision interval measurements while maintaining compatibility with `std::chrono`, as niche as that might be.
 
 Performance is around 1.1x to 1.5x faster compared Microsoft's `std::chrono::steady_clock` depending on use case, at least in my rudimentary benchmarks.
 
