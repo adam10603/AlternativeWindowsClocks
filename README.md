@@ -3,7 +3,7 @@
 
 C++ clock classes for Windows that implement [`TrivialClock`](https://en.cppreference.com/w/cpp/named_req/TrivialClock) requirements (compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/chrono)).
 
-They can be used with my [stopwatch class](https://github.com/adam10603/CPPStopwatch) for example, but they work with any code that expects clocks from [`std::chrono`](https://en.cppreference.com/w/cpp/chrono)).
+They can be used with my [stopwatch class](https://github.com/adam10603/CPPStopwatch) for example, but any code using [`std::chrono`](https://en.cppreference.com/w/cpp/chrono) clocks will be able to use these as well.
 
 
 ## precision_monotonic_clock
