@@ -22,20 +22,6 @@ namespace alt_clocks {
 		[[nodiscard]] static auto now() noexcept {
 			static_assert(period::num == 1); // Should always pass
 
-			const auto freq	= get_freq();
-			const auto ctr	= get_ctr();
-
-			if (freq == period::den) return time_point(duration(ctr));
-
-			const auto whole	= (ctr / freq) * static_cast<rep>(period::den);
-			const auto part		= (ctr % freq) * static_cast<rep>(period::den) / freq;
-
-			return time_point(duration(whole + part));
-		}
-
-	private:
-
-		static inline rep get_freq() noexcept {
 			static std::atomic<rep> freq_cache{ 0 };
 
 			auto freq = freq_cache.load(std::memory_order_relaxed);
@@ -48,14 +34,17 @@ namespace alt_clocks {
 				freq_cache.store(freq, std::memory_order_relaxed);
 			}
 
-			return freq;
-		}
-
-		static inline rep get_ctr() noexcept {
 			auto retrieved_ctr = LARGE_INTEGER{};
 			QueryPerformanceCounter(&retrieved_ctr);
 
-			return static_cast<rep>(retrieved_ctr.QuadPart);
+			const auto ctr = static_cast<rep>(retrieved_ctr.QuadPart);
+
+			if (freq == period::den) return time_point(duration(ctr));
+
+			const auto whole	= (ctr / freq) * static_cast<rep>(period::den);
+			const auto part		= (ctr % freq) * static_cast<rep>(period::den) / freq;
+
+			return time_point(duration(whole + part));
 		}
 	};
 
