@@ -9,9 +9,7 @@ They can be used with my [stopwatch class](https://github.com/adam10603/CPPStopw
 ## precision_monotonic_clock
 
 
-#### Properties
-
-Name | Value
+Property | Value
 -|-
 Underlying API | [`QueryPerformanceCounter`](https://docs.microsoft.com/en-us/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter)
 `is_steady` | `true`
@@ -32,9 +30,7 @@ Performance is around 1.1x to 2.5x faster than Microsoft's `std::chrono::steady_
 ## fast_monotonic_clock
 
 
-#### Properties
-
-Name | Value
+Property | Value
 -|-
 Underlying API | [`GetTickCount64`](https://docs.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-gettickcount64)
 `is_steady` | `true`
